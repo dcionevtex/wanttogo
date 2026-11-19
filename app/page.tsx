@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Link2, MapPin, Route, Bookmark } from "lucide-react";
+import { ArrowRight, Link2, Inbox, Bookmark } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MapArt } from "@/components/map-art";
 
@@ -50,43 +50,53 @@ export default function Home() {
       >
         <div className="section-heading">
           <div>
-            <p className="eyebrow">From inspiration to out the door</p>
-            <h2 id="journey-title">Less lost in your saved posts.</h2>
+            <p className="eyebrow">How it works</p>
+            <h2 id="journey-title">
+              Your next discovery, saved in three steps.
+            </h2>
           </div>
           <span className="section-aside">
-            A little intention goes a long way.
+            Find it. Save it. Come back to it.
           </span>
         </div>
-        <div className="steps">
+        <ol className="steps" role="list">
           {[
             {
-              n: "01",
+              n: "Step 1",
               icon: Link2,
-              title: "Find it. Keep it.",
-              text: "A link from your feed, a blog, or a friend. Your Inbox will be its first stop.",
+              title: "Copy a link you love.",
+              text: "See a café, a restaurant, or somewhere you’d love to go? Copy its link from a post, a website, or a message.",
             },
             {
-              n: "02",
-              icon: MapPin,
-              title: "Make it a place.",
-              text: "Turn inspiration into a collection of real places, with the original links close by.",
+              n: "Step 2",
+              icon: Inbox,
+              title: "Save it to your Inbox.",
+              text: "Sign in, paste the link into your Inbox, and tap “Save link.” That’s it — your discovery has a home.",
             },
             {
-              n: "03",
-              icon: Route,
-              title: "Go when it feels right.",
-              text: "Find what’s nearby, revisit an old idea, and make someday a little sooner.",
+              n: "Step 3",
+              icon: Bookmark,
+              title: "Come back when you’re ready.",
+              text: "Open your private Inbox anytime. Tap the original link to revisit the place and pick up where you left off.",
             },
           ].map(({ n, icon: Icon, title, text }) => (
-            <article key={n} className="step">
+            <li key={n} className="step">
               <div className="step-top">
-                <Icon size={22} strokeWidth={1.5} aria-hidden="true" />
                 <span>{n}</span>
+                <Icon size={22} strokeWidth={1.5} aria-hidden="true" />
               </div>
               <h3>{title}</h3>
               <p>{text}</p>
-            </article>
+            </li>
           ))}
+        </ol>
+        <div className="journey-action">
+          <p>Something caught your eye?</p>
+          <Button variant="outline" asChild>
+            <Link href="/inbox">
+              Save your first link <ArrowRight aria-hidden="true" />
+            </Link>
+          </Button>
         </div>
       </section>
       <aside className="foundation-note">
