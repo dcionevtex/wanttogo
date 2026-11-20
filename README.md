@@ -25,7 +25,7 @@ Next.js App Router, strict TypeScript, Tailwind CSS, shadcn/ui, Supabase Postgre
 
 Read the engineering instructions and implementation plan before changing the project. Work on a feature branch and implement one milestone at a time.
 
-Use Node.js 22 or newer (developed with Node.js 24) and npm. From the project folder:
+Use Node.js 24 and npm, matching CI and Vercel. From the project folder:
 
 ```sh
 npm ci
@@ -98,7 +98,15 @@ Playwright starts the production server and exercises desktop Chromium and mobil
 
 The workflow follows the [official Playwright CI setup](https://playwright.dev/docs/ci). Local verification of equivalent commands is separate from an actual hosted GitHub Actions run: a hosted run only occurs after this workflow and the application are pushed. `.tmp/` is ignored scratch space for checking a clean install without disturbing the active development dependencies.
 
-Verified locally on Windows/Node 24 from a separate lockfile installation without `.env.local`: formatting, lint, TypeScript, 88 unit/database tests, production build, and 8 browser tests all passed. The hosted Ubuntu job has not run yet. npm currently reports peer-range warnings from transitive ESLint plugins; installation and lint complete successfully with the committed versions.
+Verified locally on Windows/Node 24 from a separate lockfile installation without `.env.local`: formatting, lint, TypeScript, 88 unit/database tests, production build, and 8 browser tests all passed. The [hosted Ubuntu job also passed](https://github.com/dcionevtex/wanttogo/actions/runs/44598797884) for commit `0e56f1e`. npm currently reports peer-range warnings from transitive ESLint plugins; installation and lint complete successfully with the committed versions.
+
+## Vercel deployment
+
+The user approved direct MVP publication from `main`. The connected project is `wanttogo` with domain `https://wanttogo-xi.vercel.app`. Use the Next.js framework preset, repository root, Node.js 24.x, `npm ci` and `npm run build`, with the default Next.js output directory. Pushes to the production branch trigger deployment automatically.
+
+Production environment variables are `NEXT_PUBLIC_APP_URL=https://wanttogo-xi.vercel.app`, the project's public Supabase URL and its publishable key. Configure them in Vercel rather than committing environment files; no privileged key is required. Preview deployments need their own explicit origin and Auth callback configuration before authenticated testing.
+
+For production, Supabase Auth must use `https://wanttogo-xi.vercel.app` as Site URL and allow exactly `https://wanttogo-xi.vercel.app/auth/callback`. Retain the explicit localhost callback for development. Email quota and first-password setup limitations above still apply; deployment does not establish M1 acceptance.
 
 ## PWA foundation
 

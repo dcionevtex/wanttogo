@@ -617,10 +617,10 @@ Update this table after each milestone.
 The following services must be configured when their dependent milestone begins.
 
 - [x] GitHub repository.
-- [ ] Vercel project.
-- [ ] Supabase project.
-- [ ] Supabase environment variables.
-- [ ] Supabase Auth settings.
+- [x] Vercel project (Next.js, main branch, Node.js 24.x).
+- [x] Supabase project.
+- [x] Supabase environment variables (local and Vercel Production).
+- [x] Supabase Auth settings (production Site URL and exact production/local callbacks; custom SMTP deferred in B01).
 - [ ] Google Cloud project.
 - [ ] Google Maps JavaScript API.
 - [ ] Google Places API (New).
@@ -628,7 +628,7 @@ The following services must be configured when their dependent milestone begins.
 - [ ] AI provider credentials.
 - [ ] Server-side API cost and rate limits.
 - [ ] Apple Shortcut configuration.
-- [ ] Production domain and redirect URLs.
+- [x] Production domain and redirect URLs (`https://wanttogo-xi.vercel.app`).
 
 Do not hardcode credentials.
 
